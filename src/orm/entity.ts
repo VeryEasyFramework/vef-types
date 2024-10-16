@@ -4,6 +4,7 @@ import type {
   SafeReturnType,
   SafeType,
 } from "#/easyField/easyField.ts";
+import type { ChildListDefinition } from "#/orm/child.ts";
 
 export interface EntityRecord {
   id: string;
@@ -70,14 +71,13 @@ export interface EasyEntityConfig {
 export interface EntityDefinition {
   entityId: string;
   fields: Array<EasyField>;
-  // children: Array<EntityChildDefinition>;
+  children: Array<ChildListDefinition>;
   fieldGroups: Array<FieldGroup>;
   listFields: Array<string>;
   config: EasyEntityConfig;
   hooks: EasyEntityHooks;
   actions: Array<EntityAction>;
 }
-
 export interface EntityAction extends EntityActionDefinition {
   key: string;
 }
@@ -100,6 +100,15 @@ export interface EntityActionDefinition {
   ): SafeReturnType;
   params?: Array<EasyField>;
 }
+
+export interface EntityHookDefinition {
+  label?: string;
+  description?: string;
+
+  action(entity: EntityRecord): Promise<void> | void;
+}
+
+export type EntityHook = keyof EasyEntityHooks;
 export interface EasyEntityHooks {
   beforeSave: Array<EntityHookDefinition>;
   afterSave: Array<EntityHookDefinition>;
@@ -114,4 +123,11 @@ export interface EntityHookDefinition {
   description?: string;
 
   action(entity: EntityRecord): Promise<void> | void;
+}
+
+export interface GetListResult<T extends EntityRecord = EntityRecord> {
+  rowCount: number;
+  totalCount: number;
+  data: T[];
+  columns: string[];
 }

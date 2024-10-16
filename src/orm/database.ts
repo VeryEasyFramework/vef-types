@@ -38,7 +38,7 @@ export interface AdvancedFilter {
   value: any;
 }
 
-export interface GetListResult<T extends EntityRecord = EntityRecord> {
+export interface RowsResult<T> {
   rowCount: number;
   totalCount: number;
   data: T[];
