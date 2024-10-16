@@ -183,3 +183,9 @@ export type EasyFieldType = keyof EasyFieldTypeMap;
 export type SafeType = EasyFieldTypeMap[EasyFieldType] | null;
 
 export type SafeReturnType = Promise<SafeType | void> | SafeType | void;
+
+export interface FieldGroupDefinition {
+  key: string;
+  title: string;
+  description?: string;
+}
