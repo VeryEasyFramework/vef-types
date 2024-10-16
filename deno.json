@@ -1,5 +1,5 @@
 {
-  "name": "@vef/{module-name}",
+  "name": "@vef/types",
   "version": "0.1.0",
   "exports": "./mod.ts",
   "publish": {
@@ -9,8 +9,5 @@
   },
   "imports": {
     "#/": "./src/"
-  },
-  "tasks":{
-    "dev":"deno run --allow-all --watch dev/main.ts"
   }
 }

@@ -1,2 +1,1 @@
-# deno-lib-template
-Boilerplate code for a Deno library
+# Type Definitions for VeryEasyFramework
