@@ -189,3 +189,10 @@ export interface FieldGroupDefinition {
   title: string;
   description?: string;
 }
+
+export interface FieldGroup {
+  key: string;
+  title: string;
+  description?: string;
+  fields: Array<EasyField>;
+}

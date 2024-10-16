@@ -4,6 +4,7 @@ export type {
   EasyFieldType,
   EasyFieldTypeMap,
   FetchOptions,
+  FieldGroup,
   FieldGroupDefinition,
   SafeReturnType,
   SafeType,
@@ -15,7 +16,17 @@ export type {
   DocsActionParam,
 } from "#/easyApp/docs.ts";
 
-export type { EasyEntityConfig, EntityRecord } from "#/orm/entity.ts";
+export type {
+  EasyEntityConfig,
+  EasyEntityHooks,
+  EntityAction,
+  EntityActionDefinition,
+  EntityDefinition,
+  EntityHookDefinition,
+  EntityRecord,
+  FieldMethod,
+  IdMethodType,
+} from "#/orm/entity.ts";
 
 export type { EditLog, RecordInfo } from "#/orm/record.ts";
 
