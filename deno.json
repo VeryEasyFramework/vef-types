@@ -1,6 +1,6 @@
 {
   "name": "@vef/types",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "exports": {
     ".": "./mod.ts",
     "./mod.ts": "./mod.ts"
@@ -11,7 +11,9 @@
     ],
     "include": [
       "mod.ts",
-      "src/**/*"
+      "src/**/*",
+      "LICENSE",
+      "README.md"
     ]
   },
   "imports": {
