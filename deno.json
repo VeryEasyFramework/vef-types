@@ -1,0 +1,16 @@
+{
+  "name": "@vef/{module-name}",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "publish": {
+    "exclude": [
+      ".github"
+    ]
+  },
+  "imports": {
+    "#/": "./src/"
+  },
+  "tasks":{
+    "dev":"deno run --allow-all --watch dev/main.ts"
+  }
+}
