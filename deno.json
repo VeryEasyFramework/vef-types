@@ -1,8 +1,9 @@
 {
   "name": "@vef/types",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "exports": {
-    ".": "./mod.ts"
+    ".": "./mod.ts",
+    "./mod.ts": "./mod.ts"
   },
   "publish": {
     "exclude": [
