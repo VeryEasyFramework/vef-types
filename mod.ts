@@ -18,3 +18,5 @@ export * from "#/orm/database.ts";
 export * from "#/misc.ts";
 
 export * from "#/orm/child.ts";
+
+export * from "#/orm/settings.ts";
