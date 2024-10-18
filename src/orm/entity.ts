@@ -188,7 +188,7 @@ export interface EntityAction extends EntityActionDefinition {
   key: string;
 }
 export interface EntityActionDefinition<
-  F extends Array<EasyField> = [],
+  F extends Array<EasyField> = Array<EasyField>,
   D extends {
     [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
       ? F[number]["choices"][number]["key"]

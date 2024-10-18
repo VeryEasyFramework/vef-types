@@ -2,7 +2,6 @@ import type {
   ChildListDefinition,
   Choice,
   EasyField,
-  EasyFieldType,
   EasyFieldTypeMap,
   FieldGroup,
   SafeType,
@@ -14,11 +13,12 @@ export interface SettingsRecord {
 export interface SettingsEntityConfig {
   label: string;
   description: string;
+  editLog?: boolean;
 }
 export interface SettingsEntityHookDefinition {
   label?: string;
   description?: string;
-  action(settingsRecord: SettingsRecord): Promise<void> | void;
+  action(settings: SettingsRecord): Promise<void> | void;
 }
 
 export type SettingsEntityHooks = {
@@ -30,35 +30,15 @@ export type SettingsEntityHooks = {
 
 export type SettingsHook = keyof SettingsEntityHooks;
 
-export interface SettingsActionDefinition<
-  F extends Array<EasyField> = [],
-  D extends {
-    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
-      ? F[number]["choices"][number]["key"]
-      : EasyFieldTypeMap[F[number]["fieldType"]];
-  } = {
-    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
-      ? F[number]["choices"][number]["key"]
-      : EasyFieldTypeMap[F[number]["fieldType"]];
-  },
-> // D extends {
-//   [key in F[number]["key"]]: EasyFieldTypeMap[F[number]["fieldType"]];
-// } = { [key in F[number]["key"]]: EasyFieldTypeMap[F[number]["fieldType"]] },
-{
-  label?: string;
-  description?: string;
+export interface SettingsAction {
+  key: string;
+  label: string;
+  description: string;
   action(
     settingsRecord: SettingsRecord,
-    params: D,
+    params: Record<string, any>,
   ): Promise<void> | void;
-
-  private?: boolean;
-
-  params?: F;
-}
-
-export interface SettingsAction extends SettingsActionDefinition {
-  key: string;
+  params: Array<EasyField>;
 }
 
 export interface SettingsEntityDefinition {
