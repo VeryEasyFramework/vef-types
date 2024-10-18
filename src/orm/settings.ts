@@ -1,7 +1,9 @@
 import type {
   ChildListDefinition,
+  Choice,
   EasyField,
   EasyFieldType,
+  EasyFieldTypeMap,
   FieldGroup,
   SafeType,
 } from "@vef/types";
@@ -28,23 +30,35 @@ export type SettingsEntityHooks = {
 
 export type SettingsHook = keyof SettingsEntityHooks;
 
-export interface SettingsActionDefinition {
+export interface SettingsActionDefinition<
+  F extends Array<EasyField> = [],
+  D extends {
+    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
+      ? F[number]["choices"][number]["key"]
+      : EasyFieldTypeMap[F[number]["fieldType"]];
+  } = {
+    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
+      ? F[number]["choices"][number]["key"]
+      : EasyFieldTypeMap[F[number]["fieldType"]];
+  },
+> // D extends {
+//   [key in F[number]["key"]]: EasyFieldTypeMap[F[number]["fieldType"]];
+// } = { [key in F[number]["key"]]: EasyFieldTypeMap[F[number]["fieldType"]] },
+{
   label?: string;
   description?: string;
-  action(settingsRecord: SettingsRecord): Promise<void> | void;
+  action(
+    settingsRecord: SettingsRecord,
+    params: D,
+  ): Promise<void> | void;
 
   private?: boolean;
 
-  params?: Record<string, SettingsActionParam>;
+  params?: F;
 }
 
 export interface SettingsAction extends SettingsActionDefinition {
   key: string;
-}
-export interface SettingsActionParam {
-  key: string;
-  fieldType: EasyFieldType;
-  required?: boolean;
 }
 
 export interface SettingsEntityDefinition {

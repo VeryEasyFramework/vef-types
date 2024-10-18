@@ -1,4 +1,11 @@
-import type { EasyField, FieldGroup, SafeReturnType, SafeType, } from "#/easyField/easyField.ts";
+import type {
+  Choice,
+  EasyField,
+  EasyFieldTypeMap,
+  FieldGroup,
+  SafeReturnType,
+  SafeType,
+} from "#/easyField/easyField.ts";
 import type { ChildListDefinition } from "#/orm/child.ts";
 
 /**
@@ -180,7 +187,18 @@ export interface EntityDefinition {
 export interface EntityAction extends EntityActionDefinition {
   key: string;
 }
-export interface EntityActionDefinition {
+export interface EntityActionDefinition<
+  F extends Array<EasyField> = [],
+  D extends {
+    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
+      ? F[number]["choices"][number]["key"]
+      : EasyFieldTypeMap[F[number]["fieldType"]];
+  } = {
+    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
+      ? F[number]["choices"][number]["key"]
+      : EasyFieldTypeMap[F[number]["fieldType"]];
+  },
+> {
   label?: string;
   description?: string;
 
@@ -195,9 +213,9 @@ export interface EntityActionDefinition {
   global?: boolean;
   action(
     entity: EntityRecord,
-    params?: Record<string, SafeType>,
+    params: D,
   ): SafeReturnType;
-  params?: Array<EasyField>;
+  params?: F;
 }
 
 export interface EntityHookDefinition {
