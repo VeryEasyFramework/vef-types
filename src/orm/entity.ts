@@ -1,4 +1,11 @@
-import type { EasyField, FieldGroup, SafeReturnType, SafeType, } from "#/easyField/easyField.ts";
+import type {
+  Choice,
+  EasyField,
+  EasyFieldTypeMap,
+  FieldGroup,
+  SafeReturnType,
+  SafeType,
+} from "#/easyField/easyField.ts";
 import type { ChildListDefinition } from "#/orm/child.ts";
 
 /**
@@ -177,10 +184,9 @@ export interface EntityDefinition {
    */
   actions: Array<EntityAction>;
 }
-export interface EntityAction extends EntityActionDefinition {
+
+export interface EntityAction {
   key: string;
-}
-export interface EntityActionDefinition {
   label?: string;
   description?: string;
 
@@ -195,9 +201,9 @@ export interface EntityActionDefinition {
   global?: boolean;
   action(
     entity: EntityRecord,
-    params?: Record<string, SafeType>,
+    params: Record<string, any>,
   ): SafeReturnType;
-  params?: Array<EasyField>;
+  params: Array<EasyField>;
 }
 
 export interface EntityHookDefinition {
@@ -215,13 +221,8 @@ export interface EasyEntityHooks {
   afterInsert: Array<EntityHookDefinition>;
   validate: Array<EntityHookDefinition>;
   beforeValidate: Array<EntityHookDefinition>;
-}
-
-export interface EntityHookDefinition {
-  label?: string;
-  description?: string;
-
-  action(entity: EntityRecord): Promise<void> | void;
+  beforeDelete: Array<EntityHookDefinition>;
+  afterDelete: Array<EntityHookDefinition>;
 }
 
 /**

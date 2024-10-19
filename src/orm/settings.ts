@@ -1,7 +1,8 @@
 import type {
   ChildListDefinition,
+  Choice,
   EasyField,
-  EasyFieldType,
+  EasyFieldTypeMap,
   FieldGroup,
   SafeType,
 } from "@vef/types";
@@ -12,11 +13,12 @@ export interface SettingsRecord {
 export interface SettingsEntityConfig {
   label: string;
   description: string;
+  editLog?: boolean;
 }
 export interface SettingsEntityHookDefinition {
   label?: string;
   description?: string;
-  action(settingsRecord: SettingsRecord): Promise<void> | void;
+  action(settings: SettingsRecord): Promise<void> | void;
 }
 
 export type SettingsEntityHooks = {
@@ -28,23 +30,15 @@ export type SettingsEntityHooks = {
 
 export type SettingsHook = keyof SettingsEntityHooks;
 
-export interface SettingsActionDefinition {
-  label?: string;
-  description?: string;
-  action(settingsRecord: SettingsRecord): Promise<void> | void;
-
-  private?: boolean;
-
-  params?: Record<string, SettingsActionParam>;
-}
-
-export interface SettingsAction extends SettingsActionDefinition {
+export interface SettingsAction {
   key: string;
-}
-export interface SettingsActionParam {
-  key: string;
-  fieldType: EasyFieldType;
-  required?: boolean;
+  label: string;
+  description: string;
+  action(
+    settingsRecord: SettingsRecord,
+    params: Record<string, any>,
+  ): Promise<void> | void;
+  params: Array<EasyField>;
 }
 
 export interface SettingsEntityDefinition {
