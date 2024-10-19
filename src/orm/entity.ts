@@ -184,21 +184,9 @@ export interface EntityDefinition {
    */
   actions: Array<EntityAction>;
 }
-export interface EntityAction extends EntityActionDefinition {
+
+export interface EntityAction {
   key: string;
-}
-export interface EntityActionDefinition<
-  F extends Array<EasyField> = Array<EasyField>,
-  D extends {
-    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
-      ? F[number]["choices"][number]["key"]
-      : EasyFieldTypeMap[F[number]["fieldType"]];
-  } = {
-    [key in F[number]["key"]]: F[number]["choices"] extends Choice<infer T>[]
-      ? F[number]["choices"][number]["key"]
-      : EasyFieldTypeMap[F[number]["fieldType"]];
-  },
-> {
   label?: string;
   description?: string;
 
@@ -213,9 +201,9 @@ export interface EntityActionDefinition<
   global?: boolean;
   action(
     entity: EntityRecord,
-    params: D,
+    params: Record<string, any>,
   ): SafeReturnType;
-  params?: F;
+  params: Array<EasyField>;
 }
 
 export interface EntityHookDefinition {
@@ -233,13 +221,8 @@ export interface EasyEntityHooks {
   afterInsert: Array<EntityHookDefinition>;
   validate: Array<EntityHookDefinition>;
   beforeValidate: Array<EntityHookDefinition>;
-}
-
-export interface EntityHookDefinition {
-  label?: string;
-  description?: string;
-
-  action(entity: EntityRecord): Promise<void> | void;
+  beforeDelete: Array<EntityHookDefinition>;
+  afterDelete: Array<EntityHookDefinition>;
 }
 
 /**
