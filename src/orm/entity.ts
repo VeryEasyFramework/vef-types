@@ -203,7 +203,7 @@ export interface EntityAction {
     entity: EntityRecord,
     params: Record<string, any>,
   ): SafeReturnType;
-  params: Array<EasyField>;
+  params?: Array<EasyField>;
 }
 
 export interface EntityHookDefinition {

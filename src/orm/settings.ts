@@ -1,8 +1,6 @@
 import type {
   ChildListDefinition,
-  Choice,
   EasyField,
-  EasyFieldTypeMap,
   FieldGroup,
   SafeType,
 } from "@vef/types";
