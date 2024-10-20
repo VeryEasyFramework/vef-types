@@ -27,7 +27,6 @@ export type SettingsEntityHooks = {
 };
 
 export type SettingsHook = keyof SettingsEntityHooks;
-
 export interface SettingsAction {
   key: string;
   label: string;
@@ -38,7 +37,6 @@ export interface SettingsAction {
   ): Promise<void> | void;
   params: Array<EasyField>;
 }
-
 export interface SettingsEntityDefinition {
   settingsId: string;
   fields: Array<EasyField>;
