@@ -172,7 +172,10 @@ export interface EasyField<
 
   inCreate?: boolean;
 
-  dependsOn?: string;
+  dependsOn?: string | {
+    field: string;
+    value: any;
+  };
   fetchOnCreate?: {
     idKey: string;
     field: string;
