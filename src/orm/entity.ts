@@ -1,10 +1,7 @@
 import type {
-  Choice,
   EasyField,
-  EasyFieldTypeMap,
   FieldGroup,
   SafeReturnType,
-  SafeType,
 } from "#/easyField/easyField.ts";
 import type { ChildListDefinition } from "#/orm/child.ts";
 

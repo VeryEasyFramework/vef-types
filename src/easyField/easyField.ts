@@ -119,6 +119,8 @@ export interface EasyField<
    * **RichTextField**: Rich text data.
    *
    * **URLField**: URL.
+   *
+   * **TagField**: List of words or phrases.
    */
   fieldType: EasyFieldType;
 
@@ -296,6 +298,13 @@ export interface EasyFieldTypeMap {
    * The value is validated to be a valid URL format.
    */
   URLField: string;
+
+  /**
+   * The tag field type. This is a field that stores a list of words or phrases.
+   *
+   * **Example**: `["tag1", "tag2", "tag3"]`
+   */
+  TagField: string[];
 }
 
 export type EasyFieldType = keyof EasyFieldTypeMap;
