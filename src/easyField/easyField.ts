@@ -120,7 +120,7 @@ export interface EasyField<
    *
    * **URLField**: URL.
    *
-   * **TagField**: List of words or phrases.
+   * **ListField**: List of words or phrases.
    */
   fieldType: EasyFieldType;
 
@@ -304,7 +304,7 @@ export interface EasyFieldTypeMap {
    *
    * **Example**: `["tag1", "tag2", "tag3"]`
    */
-  TagField: string[];
+  ListField: string[];
 }
 
 export type EasyFieldType = keyof EasyFieldTypeMap;
