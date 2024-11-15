@@ -1,4 +1,8 @@
-import type { EasyField, FieldGroup, SafeReturnType, } from "#/easyField/easyField.ts";
+import type {
+  EasyField,
+  FieldGroup,
+  SafeReturnType,
+} from "#/easyField/easyField.ts";
 import type { ChildListDefinition } from "#/orm/child.ts";
 
 /**
@@ -128,7 +132,7 @@ export interface EntryTypeConfig {
 /**
  * This is the configuration for an Entry.
  */
-export interface EntryTypeDef {
+export interface EntryType {
   /**
    * The identifier of the Entry.
    * For example, `user` or `product`.
