@@ -1,4 +1,4 @@
-import type { EntityRecord } from "#/orm/entity.ts";
+import type { Entry } from "./entryType.ts";
 
 export interface ListOptions {
   columns?: string[] | "*";

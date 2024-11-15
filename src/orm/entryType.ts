@@ -6,9 +6,9 @@ import type {
 import type { ChildListDefinition } from "#/orm/child.ts";
 
 /**
- * Represents a single entity record in the database.
+ * Represents a single Entry record in the database.
  */
-export interface EntityRecord {
+export interface Entry {
   /**
    * The unique identifier for this record.
    */
@@ -68,37 +68,37 @@ export type IdMethodType =
   | FieldMethod;
 
 /**
- * The configuration for an entity.
+ * The configuration for an Entry.
  */
-export interface EasyEntityConfig {
+export interface EntryTypeConfig {
   /**
-   * The human-readable label for this entity.
+   * The human-readable label for this Entry.
    */
   label: string;
   /**
-   * A Brief description of this entity.
+   * A Brief description of this Entry.
    */
   description: string;
   /**
-   * The field to use as the title for this entity in the UI instead of the ID.
-   * If not provided, the entity's ID will be used.
+   * The field to use as the title for this Entry in the UI instead of the ID.
+   * If not provided, the Entry's ID will be used.
    */
   titleField?: string;
 
   /**
-   * The field to use as the status for this entity in the UI.
+   * The field to use as the status for this Entry in the UI.
    * This field should be a Choices field.
    */
   statusField?: string;
 
   /**
-   * The name of the table in the database where this entity is stored.
-   * This defaults to the snake_case version of the entity's name.
+   * The name of the table in the database where this Entry is stored.
+   * This defaults to the snake_case version of the Entry's name.
    */
   tableName: string;
 
   /**
-   * If true, this entity has an edit log that tracks changes to records.
+   * If true, this Entry has an edit log that tracks changes to records.
    * This defaults to false.
    *
    * By default, the edit log will track create and delete actions but not updates.
@@ -106,8 +106,8 @@ export interface EasyEntityConfig {
   editLog?: boolean;
 
   /**
-   * The method used to generate unique identifiers for this entity.
-   * If not provided, the entity will use the `HashMethod` with a hash length of 16.
+   * The method used to generate unique identifiers for this Entry.
+   * If not provided, the Entry will use the `HashMethod` with a hash length of 16.
    */
   idMethod:
     | NumberMethod
@@ -130,26 +130,27 @@ export interface EasyEntityConfig {
 }
 
 /**
- * This is the configuration for an entity.
+ * This is the configuration for an Entry.
  */
-export interface EntityDefinition {
+export interface EntryTypeDef {
   /**
-   * The identifier of the entity.
+   * The identifier of the Entry.
    * For example, `user` or `product`.
    */
-  entityId: string;
+  entryType: string;
+
   /**
-   * The fields that make up this entity.
+   * The fields that make up this Entry.
    */
   fields: Array<EasyField>;
 
   /**
-   * The children lists that belong to this entity.
+   * The children lists that belong to this Entry.
    */
   children: Array<ChildListDefinition>;
 
   /**
-   * The field to use as the status for this entity in the UI.
+   * The field to use as the status for this Entry in the UI.
    * This field should be a Choices field.
    */
 
@@ -166,23 +167,23 @@ export interface EntityDefinition {
    */
   listFields: Array<string>;
   /**
-   * The configuration object for this entity.
+   * The configuration object for this Entry.
    */
-  config: EasyEntityConfig;
+  config: EntryTypeConfig;
   /**
-   * The lifecycle hooks for this entity.
-   * These hooks are called at various points in the lifecycle of an entity record
+   * The lifecycle hooks for this Entry.
+   * These hooks are called at various points in the lifecycle of an Entry record
    * such as before saving, after saving, before validating, etc.
    */
-  hooks: EasyEntityHooks;
+  hooks: EntryHooks;
 
   /**
-   * The actions that can be performed on a record of this entity.
+   * The actions that can be performed on a record of this Entry.
    */
-  actions: Array<EntityAction>;
+  actions: Array<EntryAction>;
 }
 
-export interface EntityAction {
+export interface EntryAction {
   key: string;
   label?: string;
   description?: string;
@@ -193,39 +194,39 @@ export interface EntityAction {
   private?: boolean;
 
   /**
-   * If true, this action can be called without loading a specific entity first
+   * If true, this action can be called without loading a specific Entry first
    */
   global?: boolean;
   action(
-    entity: EntityRecord,
+    entry: Entry,
     params: Record<string, any>,
   ): SafeReturnType;
   params?: Array<EasyField>;
 }
 
-export interface EntityHookDefinition {
+export interface EntryHookDefinition {
   label?: string;
   description?: string;
 
-  action(entity: EntityRecord): Promise<void> | void;
+  action(entry: Entry): Promise<void> | void;
 }
 
-export type EntityHook = keyof EasyEntityHooks;
-export interface EasyEntityHooks {
-  beforeSave: Array<EntityHookDefinition>;
-  afterSave: Array<EntityHookDefinition>;
-  beforeInsert: Array<EntityHookDefinition>;
-  afterInsert: Array<EntityHookDefinition>;
-  validate: Array<EntityHookDefinition>;
-  beforeValidate: Array<EntityHookDefinition>;
-  beforeDelete: Array<EntityHookDefinition>;
-  afterDelete: Array<EntityHookDefinition>;
+export type EntryHook = keyof EntryHooks;
+export interface EntryHooks {
+  beforeSave: Array<EntryHookDefinition>;
+  afterSave: Array<EntryHookDefinition>;
+  beforeInsert: Array<EntryHookDefinition>;
+  afterInsert: Array<EntryHookDefinition>;
+  validate: Array<EntryHookDefinition>;
+  beforeValidate: Array<EntryHookDefinition>;
+  beforeDelete: Array<EntryHookDefinition>;
+  afterDelete: Array<EntryHookDefinition>;
 }
 
 /**
- * This is the structure of the data returned by the `getEntityList` method.
+ * This is the structure of the data returned by the `getEntryList` method.
  */
-export interface GetListResult<T extends EntityRecord = EntityRecord> {
+export interface GetListResult<T extends Entry = Entry> {
   /**
    * The number of records returned in this response.
    * This may be less than the total number of records in the database if the `limit` parameter was used.

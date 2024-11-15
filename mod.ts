@@ -9,9 +9,9 @@ export * from "#/easyField/easyField.ts";
 
 export * from "#/easyApp/docs.ts";
 
-export * from "#/orm/entity.ts";
+export * from "#/orm/entryType.ts";
 
-export * from "#/orm/record.ts";
+export * from "#/orm/entryInfo.ts";
 
 export * from "#/orm/database.ts";
 

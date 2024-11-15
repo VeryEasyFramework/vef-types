@@ -5,44 +5,44 @@ import type {
   SafeType,
 } from "@vef/types";
 
-export interface SettingsRecord {
+export interface Settings {
   [key: string]: SafeType | null | undefined;
 }
-export interface SettingsEntityConfig {
+export interface SettingsTypeConfig {
   label: string;
   description: string;
   editLog?: boolean;
 }
-export interface SettingsEntityHookDefinition {
+export interface SettingsTypeHookDefinition {
   label?: string;
   description?: string;
-  action(settings: SettingsRecord): Promise<void> | void;
+  action(settings: Settings): Promise<void> | void;
 }
 
-export type SettingsEntityHooks = {
-  beforeSave: Array<SettingsEntityHookDefinition>;
-  afterSave: Array<SettingsEntityHookDefinition>;
-  validate: Array<SettingsEntityHookDefinition>;
-  beforeValidate: Array<SettingsEntityHookDefinition>;
+export type SettingsHooks = {
+  beforeSave: Array<SettingsTypeHookDefinition>;
+  afterSave: Array<SettingsTypeHookDefinition>;
+  validate: Array<SettingsTypeHookDefinition>;
+  beforeValidate: Array<SettingsTypeHookDefinition>;
 };
 
-export type SettingsHook = keyof SettingsEntityHooks;
+export type SettingsHook = keyof SettingsHooks;
 export interface SettingsAction {
   key: string;
   label: string;
   description: string;
   action(
-    settingsRecord: SettingsRecord,
+    settingsRecord: Settings,
     params: Record<string, any>,
   ): Promise<void> | void;
   params: Array<EasyField>;
 }
-export interface SettingsEntityDefinition {
-  settingsId: string;
+export interface SettingsTypeDef {
+  settingsType: string;
   fields: Array<EasyField>;
   fieldGroups: Array<FieldGroup>;
-  config: SettingsEntityConfig;
+  config: SettingsTypeConfig;
   children: Array<ChildListDefinition>;
-  hooks: SettingsEntityHooks;
+  hooks: SettingsHooks;
   actions: Array<SettingsAction>;
 }
