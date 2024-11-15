@@ -1,8 +1,4 @@
-import type {
-  EasyField,
-  FieldGroup,
-  SafeReturnType,
-} from "#/easyField/easyField.ts";
+import type { EasyField, FieldGroup, SafeReturnType, } from "#/easyField/easyField.ts";
 import type { ChildListDefinition } from "#/orm/child.ts";
 
 /**
@@ -57,7 +53,7 @@ export interface FieldMethod extends IdMethod {
 }
 
 /**
- * Represents the method used to generate unique identifiers for entities.
+ * Represents the method used to generate unique identifiers for entry types.
  */
 export type IdMethodType =
   | NumberMethod

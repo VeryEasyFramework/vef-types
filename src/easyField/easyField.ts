@@ -25,21 +25,21 @@ export interface Choice<K extends PropertyKey = string> {
 }
 
 /**
- * The connected entity definition for a field that's set to `ConnectionField`.
+ * The connected entry type for a field that's set to `ConnectionField`.
  */
 
 export interface FetchOptions {
   /**
-   * The entity type to fetch from
+   * The entry type to fetch from
    */
-  fetchEntity: string;
+  fetchEntryType: string;
   /**
-   * The field key in `this` record that contains the id of the record of the entity to fetch from
+   * The field key in `this` entry that contains the id of the entry of the entry type to fetch from
    */
   thisIdKey: string;
 
   /**
-   * The field key in `this` record that will get the value of the fetched record
+   * The field key in `this` entry that will get the value of the fetched entry
    */
   thisFieldKey: string;
   /**
@@ -49,7 +49,7 @@ export interface FetchOptions {
 }
 
 /**
- * The field definition for a field in an entity.
+ * The field definition for a field in an entry type.
  */
 export interface EasyField<
   K extends string = string,
@@ -57,7 +57,7 @@ export interface EasyField<
   C extends Choice<P>[] = Choice<P>[],
 > {
   /**
-   * The key of the field. This is how the field will be accessed in the entity.
+   * The key of the field. This is how the field will be accessed in the entry.
    */
   key: K;
 
@@ -110,7 +110,7 @@ export interface EasyField<
    *
    * **PhoneField**: Phone number.
    *
-   * **ConnectionField**: Connection to another entity.
+   * **ConnectionField**: Connection to another entry.
    *
    * **PasswordField**: Password.
    *
@@ -125,7 +125,7 @@ export interface EasyField<
   fieldType: EasyFieldType;
 
   /**
-   * Set to true if the field is the primary key of the entity.
+   * Set to true if the field is the primary key of the entry type.
    */
   primaryKey?: boolean;
 
@@ -151,7 +151,7 @@ export interface EasyField<
     | EasyFieldTypeMap[EasyFieldType]
     | (() => EasyFieldTypeMap[EasyFieldType]);
 
-  connectionEntity?: string;
+  connectionEntryType?: string;
 
   connectionIdType?: EasyFieldType;
 
@@ -284,7 +284,7 @@ export interface EasyFieldTypeMap {
 
   /**
    * This is a connection field type.
-   * This is a field that references a record from another entity,
+   * This is a field that references an entry from another entry type,
    */
   ConnectionField: string;
 
