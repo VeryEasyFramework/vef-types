@@ -37,7 +37,7 @@ export interface SettingsAction {
   ): Promise<void> | void;
   params: Array<EasyField>;
 }
-export interface SettingsTypeDef {
+export interface SettingsType {
   settingsType: string;
   fields: Array<EasyField>;
   fieldGroups: Array<FieldGroup>;
