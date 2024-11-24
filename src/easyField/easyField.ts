@@ -1,3 +1,5 @@
+import { AdvancedFilter } from "#/orm/database.ts";
+
 /**
  * The choice definition for a field that's set to `ChoicesField` or `MultiChoiceField`.
  */
@@ -144,6 +146,8 @@ export interface EasyField<
    */
   choices?: C;
 
+  choicesFilter?: string | number | AdvancedFilter;
+
   /**
    * The default value of the field. Can be a value or a function that returns a value.
    */
@@ -156,6 +160,10 @@ export interface EasyField<
   connectionIdType?: EasyFieldType;
 
   connectionTitleField?: string;
+
+  connectionFilter?: {
+    [key: string]: AdvancedFilter | SafeType;
+  };
 
   /**
    * Set to true if the field should be unique.
