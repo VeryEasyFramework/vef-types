@@ -182,6 +182,8 @@ export interface EasyField<
 
   inCreate?: boolean;
 
+  quickCreate?: boolean;
+
   dependsOn?: string | {
     field: string;
     value: any;
@@ -190,6 +192,11 @@ export interface EasyField<
     idKey: string;
     field: string;
   };
+
+  /**
+   * Custom properties for the field.
+   */
+  custom?: Record<string, any>;
 }
 
 /**
