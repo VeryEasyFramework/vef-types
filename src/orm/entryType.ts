@@ -70,7 +70,7 @@ export type IdMethodType =
 /**
  * The configuration for an Entry.
  */
-export interface EntryTypeConfig {
+export interface EntryTypeConfig<FieldKeys = string> {
   /**
    * The human-readable label for this Entry.
    */
@@ -83,7 +83,7 @@ export interface EntryTypeConfig {
    * The field to use as the title for this Entry in the UI instead of the ID.
    * If not provided, the Entry's ID will be used.
    */
-  titleField?: string;
+  titleField?: FieldKeys;
 
   /**
    * The field to use as the status for this Entry in the UI.
