@@ -1,16 +1,23 @@
 import type { AdvancedFilter, ListOptions } from "#/orm/database.ts";
 
 export interface ReportOptions {
-  columns?: string[] | "*";
-  filter?: Record<string, string | number | AdvancedFilter>;
-  orFilter?: Record<string, string | number | AdvancedFilter>;
-  limit?: number;
-  offset?: number;
-  orderBy?: string;
-  order?: "asc" | "desc";
-  groupBy?: string;
+  baseEntryType: string;
+  columns: ReportColumn[];
 
-  count?: boolean;
+  join?: {
+    entryType: string;
+    type: "inner" | "left" | "right";
+    columns: ReportColumn[];
+  };
+  filter?: Record<string, string | number | AdvancedFilter>;
+}
+
+export interface ReportColumn {
+  name: string;
+  order?: number;
+  aggregate?: boolean;
+  alias?: string;
+  operation?: "sum" | "avg" | "count" | "min" | "max";
 }
 
 export interface CountOptions {
