@@ -188,6 +188,8 @@ export interface EntryAction {
   label?: string;
   description?: string;
 
+  customValidation?: boolean;
+
   /**
    * If true, this action can only be called internally
    */
