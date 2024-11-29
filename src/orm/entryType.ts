@@ -181,6 +181,13 @@ export interface EntryType {
    * The actions that can be performed on a record of this Entry.
    */
   actions: Array<EntryAction>;
+
+  connections: Array<EntryConnection>;
+}
+
+export interface EntryConnection {
+  entryType: string;
+  idFieldKey: string;
 }
 
 export interface EntryAction {
