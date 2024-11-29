@@ -187,6 +187,7 @@ export interface EntryType {
 
 export interface EntryConnection {
   entryType: string;
+  label: string;
   idFieldKey: string;
 }
 
