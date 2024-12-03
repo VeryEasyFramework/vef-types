@@ -184,6 +184,8 @@ export interface EasyField<
 
   quickCreate?: boolean;
 
+  showTime?: boolean;
+
   dependsOn?: string | {
     field: string;
     value: any;
