@@ -148,6 +148,11 @@ export interface EasyField<
 
   choicesFilter?: string | number | AdvancedFilter;
 
+  currency?: {
+    code: string;
+    symbol: string;
+  };
+
   /**
    * The default value of the field. Can be a value or a function that returns a value.
    */
@@ -325,6 +330,8 @@ export interface EasyFieldTypeMap {
    * **Example**: `["tag1", "tag2", "tag3"]`
    */
   ListField: string[];
+
+  CurrencyField: number;
 }
 
 export type EasyFieldType = keyof EasyFieldTypeMap;
