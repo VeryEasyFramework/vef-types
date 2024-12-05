@@ -1,6 +1,6 @@
 {
   "name": "@vef/types",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "exports": {
     ".": "./mod.ts",
     "./mod.ts": "./mod.ts"

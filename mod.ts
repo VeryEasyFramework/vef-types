@@ -20,5 +20,3 @@ export * from "#/misc.ts";
 export * from "#/orm/child.ts";
 
 export * from "#/orm/settings.ts";
-
-export * from "#/orm/report.ts";
