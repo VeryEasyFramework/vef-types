@@ -142,6 +142,11 @@ export interface EasyField<
   inList?: boolean;
 
   /**
+   * Set to true if the field should be included in the global search index.
+   */
+  inGlobalSearch?: boolean;
+
+  /**
    * The choices for the field. Only applicable for ChoicesField and MultiChoiceField.
    */
   choices?: C;

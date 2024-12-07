@@ -109,6 +109,11 @@ export interface EntryTypeConfig<FieldKeys = string> {
    * The method used to generate unique identifiers for this Entry.
    * If not provided, the Entry will use the `HashMethod` with a hash length of 16.
    */
+
+  /**
+   * If true, this EntryType can be searched globally based on the titleField.
+   */
+  globalSearch?: boolean;
   idMethod:
     | NumberMethod
     | UuidMethod
