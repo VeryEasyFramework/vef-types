@@ -10,6 +10,24 @@ export interface ListOptions {
   order?: "asc" | "desc";
 }
 
+export interface DatabaseListOptions {
+  columns?:
+    | Array<
+      string | {
+        key: string;
+        entryType: string;
+        type: "multiChoice";
+      }
+    >
+    | "*";
+  filter?: Record<string, string | number | AdvancedFilter>;
+  orFilter?: Record<string, string | number | AdvancedFilter>;
+  limit?: number;
+  offset?: number;
+  orderBy?: string;
+  order?: "asc" | "desc";
+}
+
 export interface AdvancedFilter {
   op:
     | "contains"
