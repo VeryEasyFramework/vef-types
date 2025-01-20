@@ -1,4 +1,4 @@
-import { AdvancedFilter } from "#/orm/database.ts";
+import type { AdvancedFilter } from "#/orm/database.ts";
 
 /**
  * The choice definition for a field that's set to `ChoicesField` or `MultiChoiceField`.
@@ -153,6 +153,10 @@ export interface EasyField<
     symbol: string;
   };
 
+  /**
+   * The number style for the field. Only applicable for DecimalField and IntField.
+   */
+  numberStyle?: "percent";
   /**
    * The default value of the field. Can be a value or a function that returns a value.
    */

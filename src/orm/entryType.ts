@@ -91,6 +91,8 @@ export interface EntryTypeConfig<FieldKeys = string> {
    */
   statusField?: string;
 
+  searchFields?: Array<EasyField>;
+
   /**
    * The name of the table in the database where this Entry is stored.
    * This defaults to the snake_case version of the Entry's name.
