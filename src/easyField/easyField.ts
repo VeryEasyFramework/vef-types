@@ -246,7 +246,7 @@ export interface EasyFieldTypeMap {
    * The date field type. This is a field that stores a date without a time.
    * 'YYYY-MM-DD'
    */
-  DateField: Date;
+  DateField: string;
 
   /**
    * The timestamp field type. This is a field that stores a date and time.
