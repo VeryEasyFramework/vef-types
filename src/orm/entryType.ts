@@ -91,7 +91,7 @@ export interface EntryTypeConfig<FieldKeys = string> {
    */
   statusField?: string;
 
-  searchFields?: Array<EasyField>;
+  searchFields?: Array<{ key: string; label: string }>;
 
   /**
    * The name of the table in the database where this Entry is stored.
