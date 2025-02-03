@@ -191,6 +191,7 @@ export interface EntryConnection {
   entryType: string;
   label: string;
   idFieldKey: string;
+  fieldLabel: string;
 }
 
 export interface EntryAction {
