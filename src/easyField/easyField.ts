@@ -173,7 +173,7 @@ export interface EasyField<
   /**
    * Hide the connection from the connected entryType. Default is false.
    */
-  hideConnection: boolean;
+  hideConnection?: boolean;
 
   connectionFilter?: {
     [key: string]: AdvancedFilter | SafeType;
