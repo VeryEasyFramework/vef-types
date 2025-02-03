@@ -12,6 +12,16 @@ export interface EditLog extends Entry {
   action: "create" | "update" | "delete";
   editData: Record<string, any>;
 }
+
+export interface EntryConnectionCount {
+  entryType: string;
+  label: string;
+  count: number;
+  fieldKey: string;
+  fieldLabel: string;
+}
 export interface EntryInfo {
   editLog: EditLog[];
+  connections: EntryConnectionCount[];
+  comments: any[];
 }
