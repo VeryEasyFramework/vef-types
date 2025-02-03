@@ -192,6 +192,8 @@ export interface EntryConnection {
   label: string;
   idFieldKey: string;
   fieldLabel: string;
+
+  listFields: Array<EasyField>;
 }
 
 export interface EntryAction {

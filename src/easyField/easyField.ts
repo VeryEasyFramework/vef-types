@@ -141,6 +141,8 @@ export interface EasyField<
    */
   inList?: boolean;
 
+  inConnectionList?: boolean;
+
   /**
    * The choices for the field. Only applicable for ChoicesField and MultiChoiceField.
    */
