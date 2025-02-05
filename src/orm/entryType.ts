@@ -163,6 +163,8 @@ export interface EntryType {
    * This is useful for rendering forms with sections or tabs in the UI.
    */
   fieldGroups: Array<FieldGroup>;
+
+  displayFieldGroups: Array<FieldGroup>;
   /**
    * A list of field keys of fields that have `inList` set to `true`.
    * This is useful for passing to the `columns` property when fetching a list of records.
