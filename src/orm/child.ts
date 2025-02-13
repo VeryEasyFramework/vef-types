@@ -9,7 +9,7 @@ export interface ChildListConfig {
  */
 export interface ChildListDefinition {
   childName: string;
-  readOnly: boolean;
+  readOnly?: boolean;
   label: string;
   fields: EasyField[];
   config?: ChildListConfig;

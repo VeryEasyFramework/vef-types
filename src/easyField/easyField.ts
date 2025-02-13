@@ -24,6 +24,12 @@ export interface Choice<K extends PropertyKey = string> {
     | "warning"
     | "error"
     | "muted";
+
+  /**
+   * A human-readable description for the choice.
+   */
+
+  description?: string;
 }
 
 /**
@@ -202,13 +208,16 @@ export interface EasyField<
 
   showTime?: boolean;
 
-  dependsOn?: string | {
-    field: string;
-    value: any;
-  } | {
-    field: string;
-    value: any;
-  }[];
+  dependsOn?:
+    | string
+    | {
+        field: string;
+        value: any;
+      }
+    | {
+        field: string;
+        value: any;
+      }[];
   fetchOnCreate?: {
     idKey: string;
     field: string;
