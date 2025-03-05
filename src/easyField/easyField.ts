@@ -1,5 +1,15 @@
 import type { AdvancedFilter } from "#/orm/database.ts";
 
+type DependsOn =
+  | string
+  | {
+    field: string;
+    value: any;
+  }
+  | Array<{
+    field: string;
+    value: any;
+  }>;
 /**
  * The choice definition for a field that's set to `ChoicesField` or `MultiChoiceField`.
  */
@@ -208,16 +218,7 @@ export interface EasyField<
 
   showTime?: boolean;
 
-  dependsOn?:
-    | string
-    | {
-        field: string;
-        value: any;
-      }
-    | {
-        field: string;
-        value: any;
-      }[];
+  dependsOn?: DependsOn;
   fetchOnCreate?: {
     idKey: string;
     field: string;
@@ -364,11 +365,13 @@ export interface FieldGroupDefinition {
   key: string;
   title: string;
   description?: string;
+  dependsOn?: DependsOn;
 }
 
 export interface FieldGroup {
   key: string;
   title: string;
   description?: string;
+  dependsOn?: DependsOn;
   fields: Array<EasyField>;
 }
